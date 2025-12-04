@@ -8,6 +8,8 @@
 
 class UObject;
 
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnPostProcessInput, const float, const bool)
+
 /** Minimal class that supports extension by game feature plugins */
 UCLASS(Blueprintable)
 class MODULARGAMEPLAYACTORS_API AModularPlayerController : public APlayerController
@@ -23,5 +25,9 @@ public:
 	//~ Begin APlayerController interface
 	virtual void ReceivedPlayer() override;
 	virtual void PlayerTick(float DeltaTime) override;
+	virtual void PostProcessInput(const float DeltaTime, const bool bGamePaused) override;
 	//~ End APlayerController interface
+
+public:
+	FOnPostProcessInput OnPostProcessInput;
 };

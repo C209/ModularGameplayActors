@@ -47,3 +47,9 @@ void AModularPlayerController::PlayerTick(float DeltaTime)
 		Component->PlayerTick(DeltaTime);
 	}
 }
+
+void AModularPlayerController::PostProcessInput(const float DeltaTime, const bool bGamePaused)
+{
+	Super::PostProcessInput(DeltaTime, bGamePaused);
+	OnPostProcessInput.Broadcast(DeltaTime, bGamePaused);
+}
